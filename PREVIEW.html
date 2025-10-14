@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Insights - Blog Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            padding: 30px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .card-header.alt {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .card-header h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 15px;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .card-body p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: #e9ecef;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: #495057;
+        }
+
+        .read-more {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .read-more:hover {
+            background: #5568d3;
+        }
+
+        .highlights {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .highlights h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .highlights ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .highlights li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .highlights li:before {
+            content: "→";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        footer h3 {
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        footer p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .deployment-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-top: 20px;
+            transition: transform 0.3s;
+        }
+
+        .deployment-btn:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tech Insights</h1>
+        <p>Cloud Architecture & Web3 Innovation</p>
+    </header>
+
+    <div class="container">
+        <div class="highlights">
+            <h3>What's Inside</h3>
+            <ul>
+                <li><strong>2 In-Depth Technical Articles</strong> - Real-world experiences and architectural deep dives</li>
+                <li><strong>Chirpy Jekyll Theme</strong> - Beautiful, responsive design with dark mode support</li>
+                <li><strong>SEO Optimized</strong> - Meta tags, Open Graph, and structured data ready</li>
+                <li><strong>GitHub Pages Ready</strong> - Deploy in minutes with one command</li>
+            </ul>
+        </div>
+
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="card-header">
+                    <h2>My Unexpected Experience with OCI Migrations</h2>
+                    <div class="card-meta">
+                        <span>📅 October 13, 2025</span>
+                        <span>⏱️ 18-22 min read</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="tags">
+                        <span class="tag">#oci</span>
+                        <span class="tag">#aws</span>
+                        <span class="tag">#cloud-migration</span>
+                        <span class="tag">#oracle</span>
+                        <span class="tag">#infrastructure</span>
+                    </div>
+                    <p>
+                        A deep dive into large-scale AWS-to-OCI migrations, covering tag validation conflicts,
+                        hydration agents, golden volumes, and the hidden complexities of Oracle Cloud Migrations.
+                        Learn about the OCM service architecture, availability domain constraints, and post-migration
+                        orchestration with Ansible Tower.
+                    </p>
+                    <p><strong>Key Topics:</strong></p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px; color: #666;">
+                        <li>OCM service architecture beyond the UI</li>
+                        <li>Tag validation crisis and 3 workarounds</li>
+                        <li>Hydration agents and golden volumes</li>
+                        <li>Post-migration orchestration patterns</li>
+                        <li>API-driven automation workflows</li>
+                    </ul>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="card-header alt">
+                    <h2>Bridging the Metaverse: Cross-Chain Identity</h2>
+                    <div class="card-meta">
+                        <span>📅 October 14, 2025</span>
+                        <span>⏱️ 15 min read</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="tags">
+                        <span class="tag">#metaverse</span>
+                        <span class="tag">#blockchain</span>
+                        <span class="tag">#polkadot</span>
+                        <span class="tag">#zkp</span>
+                        <span class="tag">#identity</span>
+                        <span class="tag">#web3</span>
+                    </div>
+                    <p>
+                        Why connecting 400 million users across 14 metaverse platforms requires rethinking identity
+                        from first principles. Explore the Interoperability Trilemma, Trust Propagation Layer, and
+                        how Polkadot's architecture enables privacy-preserving cross-chain identity with ZKPs.
+                    </p>
+                    <p><strong>Key Topics:</strong></p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px; color: #666;">
+                        <li>The Interoperability Trilemma explained</li>
+                        <li>Identity-first architecture patterns</li>
+                        <li>Polkadot as identity backbone</li>
+                        <li>ZKP implementations for credentials</li>
+                        <li>Novel attack vectors and mitigations</li>
+                    </ul>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <h3>Ready to Deploy?</h3>
+            <p>Your blog is fully configured and ready to publish!</p>
+            <p><strong>Blog Location:</strong> /Users/gc/Downloads/Blogs/chirpy-blog/</p>
+            <a href="file:///Users/gc/Downloads/Blogs/chirpy-blog/DEPLOYMENT.md" class="deployment-btn">
+                View Deployment Guide
+            </a>
+            <p style="margin-top: 30px; font-size: 0.9em;">
+                <strong>Quick Deploy:</strong><br>
+                Push to GitHub → Enable Pages → Your blog is live!<br>
+                Estimated time: 5 minutes
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
