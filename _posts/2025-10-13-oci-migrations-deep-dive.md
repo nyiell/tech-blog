@@ -8,6 +8,7 @@ description: "What I learned orchestrating large-scale AWS-to-OCI migrations whi
 image:
   path: /assets/img/posts/oci-migration.jpg
   alt: Oracle Cloud Infrastructure Migration Architecture
+mermaid: true
 ---
 
 When I started this AWS-to-OCI migration project, I expected the typical challenges: network configuration, performance tuning, maybe some application compatibility issues. What I didn't expect was to spend weeks deep in the weeds of OCI's tag validation system, reverse-engineering hydration agent behavior through API calls, and coordinating with Oracle support across multiple tenancies while building a comprehensive post-migration orchestration architecture.

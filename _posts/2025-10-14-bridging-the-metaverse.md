@@ -8,6 +8,7 @@ description: "Why connecting 400 million users across 14 metaverse platforms req
 image:
   path: /assets/img/posts/metaverse-bridge.jpg
   alt: Cross-Chain Metaverse Identity Architecture
+mermaid: true
 ---
 
 Here's a paradox that should terrify every Web3 architect: We've successfully built 14+ thriving metaverse platforms hosting 400 million users, yet these digital universes remain as isolated as medieval kingdoms. Users routinely traverse multiple platforms, but their identities, assets, and reputations evaporate at each border crossing. Meanwhile, cross-chain bridges—our primary interoperability solution—have hemorrhaged $2.8 billion in exploits, representing 40% of all Web3 hacks.
