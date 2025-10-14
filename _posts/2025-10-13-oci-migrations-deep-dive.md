@@ -8,7 +8,6 @@ description: "What I learned orchestrating large-scale AWS-to-OCI migrations whi
 image:
   path: /assets/img/posts/oci-migration.jpg
   alt: Oracle Cloud Infrastructure Migration Architecture
-mermaid: true
 ---
 
 When I started this AWS-to-OCI migration project, I expected the typical challenges: network configuration, performance tuning, maybe some application compatibility issues. What I didn't expect was to spend weeks deep in the weeds of OCI's tag validation system, reverse-engineering hydration agent behavior through API calls, and coordinating with Oracle support across multiple tenancies while building a comprehensive post-migration orchestration architecture.
@@ -34,33 +33,7 @@ The Oracle Cloud Migrations UI presents a deceptively simple hierarchy: you crea
 
 Here's what I learned through extensive API analysis and coordination with Oracle's engineering team:
 
-```mermaid
-graph TB
-    subgraph "OCM Service Architecture"
-        AS[Asset Source<br/>AWS Connection] --> INV[Central Inventory<br/>Discovery Results]
-        INV --> MP[Migration Project<br/>Logical Container]
-
-        MP --> MA[Migration Assets<br/>Actual VMs to Migrate]
-        MP --> PLAN[Migration Plans<br/>Launch Configuration]
-
-        MA --> REP[Replication Process]
-        REP --> HA[Hydration Agent<br/>Worker Instance]
-        HA --> GV[Golden Volumes<br/>Immutable Replicated Data]
-
-        PLAN --> CLONE[Volume Cloning]
-        GV --> CLONE
-        CLONE --> PATCH[Linux Patching<br/>GRUB/Network Config]
-        PATCH --> TF[Terraform Stack<br/>Generated Artifacts]
-
-        TF --> DEPLOY[User Applies Stack]
-        DEPLOY --> FINAL[Running OCI Instances]
-    end
-
-    style MA fill:#e1f5ff
-    style GV fill:#fff4e1
-    style HA fill:#ffe1e1
-    style TF fill:#e1ffe1
-```
+![OCM Service Architecture](/assets/img/diagrams/oci-architecture.svg)
 
 **Caption:** The OCM service separates concerns between replication (moving data) and launching (creating compute). This distinction is crucial for understanding parallelization limits and troubleshooting failures.
 
@@ -83,37 +56,7 @@ But it also introduces complexity that the UI obscures. For example, you can't "
 
 The hydration agent deserves special attention because it's the workhorse of the entire system. Here's how it actually works:
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant OCM as OCM Control Plane
-    participant HA as Hydration Agent (Ephemeral Instance)
-    participant AWS as AWS Account
-    participant OCI as OCI Block Storage
-
-    User->>OCM: Start Replication
-    OCM->>OCI: Create block volumes (matched to AWS sizes)
-    OCM->>OCM: Spin up Hydration Agent
-    OCM->>HA: Attach prepared volumes
-    OCM->>HA: Pass AWS credentials & task
-
-    HA->>AWS: CreateSnapshot(EC2 Volume)
-    AWS-->>HA: Snapshot ID
-    HA->>AWS: Poll until snapshot ready
-    AWS-->>HA: Snapshot ready
-
-    loop For each block
-        HA->>AWS: GetSnapshotBlocks(range)
-        AWS-->>HA: Block data
-        HA->>OCI: Write blocks to mounted volume
-    end
-
-    HA->>OCM: Replication complete
-    OCM->>OCM: Tag volume as "golden" (g_volume_identifier)
-    OCM->>HA: Terminate hydration agent
-
-    Note over OCI: Golden volumes remain for future launches
-```
+![Hydration Agent Sequence](/assets/img/diagrams/oci-hydration.svg)
 
 **Caption:** The hydration agent is ephemeral—it exists only during replication. It acts as a streaming proxy between AWS snapshots and OCI block volumes, with no intermediate object storage involved (unlike VMware migrations).
 
@@ -123,26 +66,7 @@ sequenceDiagram
 
 This is where things get interesting for large-scale migrations. OCI has a hard limit: **10 concurrent hydration agents per Availability Domain per tenancy**.
 
-```mermaid
-graph LR
-    subgraph "Ashburn Region"
-        subgraph "AD-1"
-            MP1["Migration Project 1<br/>10 Assets"] --> HA1["10 Hydration Agents"]
-        end
-
-        subgraph "AD-2"
-            MP2["Migration Project 2<br/>10 Assets"] --> HA2["10 Hydration Agents"]
-        end
-
-        subgraph "AD-3"
-            MP3["Migration Project 3<br/>10 Assets"] --> HA3["10 Hydration Agents"]
-        end
-    end
-
-    style HA1 fill:#ffcccc
-    style HA2 fill:#ccffcc
-    style HA3 fill:#ccccff
-```
+![Availability Domain Distribution](/assets/img/diagrams/oci-availability.svg)
 
 **Caption:** To parallelize beyond 10 replications, you must distribute assets across multiple Availability Domains or create multiple Migration Projects. In regions with only one AD (like Chicago), you're hard-capped at 10 concurrent replications.
 
@@ -171,29 +95,7 @@ The error was cryptic. The migration worked fine in our `ocideltekengineering` t
 
 OCI's tagging system implements a hierarchical governance model that validates tags at multiple levels:
 
-```mermaid
-graph TD
-    ROOT[Root Compartment<br/>Tag Namespace: Finance] --> PARENT[Parent Compartment<br/>Tag Defaults: CostCenter=Required]
-
-    PARENT --> CHILD1[Child Compartment 1<br/>Tag: CostCenter=Defined<br/>User-Applied]
-    PARENT --> CHILD2[Child Compartment 2<br/>Tag: CostCenter=Default<br/>Inherited]
-
-    CHILD1 --> RES1[Resource Creation]
-    CHILD2 --> RES2[Resource Creation]
-
-    RES1 -->|Validation| CHECK1{Can reconcile<br/>user value with<br/>parent rules?}
-    RES2 -->|Validation| CHECK2{Can apply<br/>default value?}
-
-    CHECK1 -->|No| FAIL1[❌ 400 Invalid Tags]
-    CHECK1 -->|Yes| SUCCESS1[✅ Created]
-
-    CHECK2 -->|Yes| SUCCESS2[✅ Created]
-
-    style FAIL1 fill:#ffcccc
-    style SUCCESS1 fill:#ccffcc
-    style SUCCESS2 fill:#ccffcc
-    style CHECK1 fill:#fff4cc
-```
+![Tag Validation Flow](/assets/img/diagrams/oci-tags.svg)
 
 **Caption:** Tag validation in OCI checks parent compartment rules during resource creation. User-applied tags can conflict with parent tag defaults, causing validation failures that aren't obvious from the UI.
 

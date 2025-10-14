@@ -8,7 +8,6 @@ description: "Why connecting 400 million users across 14 metaverse platforms req
 image:
   path: /assets/img/posts/metaverse-bridge.jpg
   alt: Cross-Chain Metaverse Identity Architecture
-mermaid: true
 ---
 
 Here's a paradox that should terrify every Web3 architect: We've successfully built 14+ thriving metaverse platforms hosting 400 million users, yet these digital universes remain as isolated as medieval kingdoms. Users routinely traverse multiple platforms, but their identities, assets, and reputations evaporate at each border crossing. Meanwhile, cross-chain bridges—our primary interoperability solution—have hemorrhaged $2.8 billion in exploits, representing 40% of all Web3 hacks.
@@ -25,25 +24,7 @@ This article dissects why metaverse interoperability demands a paradigm shift in
 
 Most discussions of blockchain interoperability focus on Vitalik Buterin's "blockchain trilemma" (security, scalability, decentralization). But cross-chain systems face a distinct, underappreciated constraint I call the **Interoperability Trilemma:**
 
-```mermaid
-graph TD
-    A[Interoperability Trilemma] --> B[Trust Minimization]
-    A --> C[Universal Compatibility]
-    A --> D[Performance]
-
-    B --> E[Light client proofs<br/>Zero trusted parties]
-    C --> F[Works across all chains<br/>Protocol agnostic]
-    D --> G[Low latency<br/>High throughput]
-
-    B -.->|Conflicts with| C
-    C -.->|Conflicts with| D
-    D -.->|Conflicts with| B
-
-    style A fill:#e74c3c,color:#fff
-    style B fill:#3498db,color:#fff
-    style C fill:#2ecc71,color:#fff
-    style D fill:#f39c12,color:#fff
-```
+![Interoperability Trilemma](/assets/img/diagrams/metaverse-trilemma.svg)
 
 **The Trilemma Explained:**
 
@@ -76,31 +57,7 @@ This isn't just inconvenient—it fundamentally undermines the value proposition
 
 Rather than treating identity as an application built atop interoperability infrastructure, we should **invert the stack**: make identity the foundational layer upon which cross-chain operations are built.
 
-```mermaid
-graph TB
-    subgraph "Traditional Architecture"
-    T1[Application Layer<br/>Metaverse Platforms]
-    T2[Identity Layer<br/>per-chain wallets]
-    T3[Interoperability Layer<br/>Bridges/Oracles]
-    T4[Blockchain Layer<br/>Individual Chains]
-
-    T1 --> T2
-    T2 --> T3
-    T3 --> T4
-    end
-
-    subgraph "Identity-First Architecture"
-    N1[Application Layer<br/>Metaverse Platforms]
-    N2[Trust Propagation Layer<br/>Cross-chain Identity & Reputation]
-    N3[Consensus Layer<br/>Individual Chains]
-
-    N1 --> N2
-    N2 --> N3
-    end
-
-    style T2 fill:#e74c3c,color:#fff
-    style N2 fill:#2ecc71,color:#fff
-```
+![Identity-First Architecture](/assets/img/diagrams/metaverse-architecture.svg)
 
 The **Trust Propagation Layer (TPL)** serves as a universal identity substrate with three core primitives:
 
@@ -121,31 +78,7 @@ Traditional approaches try to replicate identity state across chains—expensive
 3. **Update infrequently** only when reputation materially changes
 4. **Resolve disputes** through challenge-response mechanisms
 
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant M1 as Metaverse 1 (Ethereum)
-    participant TPL as Trust Propagation Layer
-    participant M2 as Metaverse 2 (Polkadot)
-
-    U->>TPL: Generate DID
-    Note over U,TPL: did:poly:user123
-
-    M1->>U: Issue VC (Verified Creator)
-    U->>TPL: Store VC locally + Anchor commitment
-    TPL->>M1: Merkle root posted
-    TPL->>M2: Merkle root posted
-
-    U->>M2: Request access to creator-only space
-    M2->>U: Prove you're verified
-    U->>U: Generate ZKP (I have VC proving creator status)
-    U->>M2: Present ZKP
-    M2->>TPL: Verify commitment exists
-    TPL->>M2: ✓ Valid
-    M2->>U: Access granted
-
-    Note over U,M2: No raw data crosses chains - Privacy preserved
-```
+![Trust Propagation Layer Sequence](/assets/img/diagrams/metaverse-sequence.svg)
 
 **Why this matters:** Instead of expensive cross-chain messages for every interaction, we perform one-time anchoring and then local verification. Latency drops from seconds to milliseconds. Cost drops from dollars to cents. Privacy improves—verifiers see proofs, not raw data.
 
@@ -194,50 +127,7 @@ Identity standards evolve (W3C published VC 2.0 in May 2025). Traditional chains
 
 ### The Polkadot Architecture for Cross-Metaverse Identity
 
-```mermaid
-graph TB
-    subgraph "Relay Chain"
-        RC["Relay Chain<br/>Shared Security + Finality"]
-    end
-
-    subgraph "Identity Parachain"
-        IP["Identity Parachain<br/>DID Registry"]
-        VC_REG["VC Schema Registry"]
-        ZK_VER["ZKP Verifier Modules"]
-    end
-
-    subgraph "Metaverse Parachains"
-        M1["Metaverse 1<br/>Gaming"]
-        M2["Metaverse 2<br/>Social"]
-        M3["Metaverse 3<br/>Commerce"]
-    end
-
-    subgraph "DeFi Parachains"
-        DEX["DEX Parachain<br/>Loan Smart Contracts"]
-    end
-
-    RC -.->|Shared Security| IP
-    RC -.->|Shared Security| M1
-    RC -.->|Shared Security| M2
-    RC -.->|Shared Security| M3
-    RC -.->|Shared Security| DEX
-
-    IP <-->|XCM: Verify Credential| M1
-    IP <-->|XCM: Verify Credential| M2
-    IP <-->|XCM: Verify Credential| M3
-    IP <-->|XCM: Verify Credential| DEX
-
-    M1 <-->|XCM: Asset Transfer| M2
-    M2 <-->|XCM: Asset Transfer| M3
-    M1 <-->|XCM: Prove Collateral| DEX
-
-    style RC fill:#e91e63,color:#fff
-    style IP fill:#9c27b0,color:#fff
-    style M1 fill:#2196f3,color:#fff
-    style M2 fill:#2196f3,color:#fff
-    style M3 fill:#2196f3,color:#fff
-    style DEX fill:#ff9800,color:#fff
-```
+![Polkadot Architecture for Cross-Metaverse Identity](/assets/img/diagrams/metaverse-polkadot.svg)
 
 **Key Insight:** The Identity Parachain doesn't store raw credentials—it stores:
 

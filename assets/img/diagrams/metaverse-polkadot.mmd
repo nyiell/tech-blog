@@ -1,0 +1,42 @@
+graph TB
+    subgraph "Relay Chain"
+        RC["Relay Chain<br/>Shared Security + Finality"]
+    end
+
+    subgraph "Identity Parachain"
+        IP["Identity Parachain<br/>DID Registry"]
+        VC_REG["VC Schema Registry"]
+        ZK_VER["ZKP Verifier Modules"]
+    end
+
+    subgraph "Metaverse Parachains"
+        M1["Metaverse 1<br/>Gaming"]
+        M2["Metaverse 2<br/>Social"]
+        M3["Metaverse 3<br/>Commerce"]
+    end
+
+    subgraph "DeFi Parachains"
+        DEX["DEX Parachain<br/>Loan Smart Contracts"]
+    end
+
+    RC -.->|Shared Security| IP
+    RC -.->|Shared Security| M1
+    RC -.->|Shared Security| M2
+    RC -.->|Shared Security| M3
+    RC -.->|Shared Security| DEX
+
+    IP <-->|XCM: Verify Credential| M1
+    IP <-->|XCM: Verify Credential| M2
+    IP <-->|XCM: Verify Credential| M3
+    IP <-->|XCM: Verify Credential| DEX
+
+    M1 <-->|XCM: Asset Transfer| M2
+    M2 <-->|XCM: Asset Transfer| M3
+    M1 <-->|XCM: Prove Collateral| DEX
+
+    style RC fill:#e91e63,color:#fff
+    style IP fill:#9c27b0,color:#fff
+    style M1 fill:#2196f3,color:#fff
+    style M2 fill:#2196f3,color:#fff
+    style M3 fill:#2196f3,color:#fff
+    style DEX fill:#ff9800,color:#fff

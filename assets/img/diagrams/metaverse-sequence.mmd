@@ -1,0 +1,23 @@
+sequenceDiagram
+    participant U as User
+    participant M1 as Metaverse 1 (Ethereum)
+    participant TPL as Trust Propagation Layer
+    participant M2 as Metaverse 2 (Polkadot)
+
+    U->>TPL: Generate DID
+    Note over U,TPL: did:poly:user123
+
+    M1->>U: Issue VC (Verified Creator)
+    U->>TPL: Store VC locally + Anchor commitment
+    TPL->>M1: Merkle root posted
+    TPL->>M2: Merkle root posted
+
+    U->>M2: Request access to creator-only space
+    M2->>U: Prove you're verified
+    U->>U: Generate ZKP (I have VC proving creator status)
+    U->>M2: Present ZKP
+    M2->>TPL: Verify commitment exists
+    TPL->>M2: ✓ Valid
+    M2->>U: Access granted
+
+    Note over U,M2: No raw data crosses chains - Privacy preserved
