@@ -23,10 +23,10 @@ description: >- # used by seo meta and the atom feed
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
-url: ""
+url: "https://nyiell.github.io"
 
 github:
-  username: d14znet # change to your GitHub username
+  username: nyiell # change to your GitHub username
 
 twitter:
   username: # change to your Twitter username
@@ -38,7 +38,7 @@ social:
   email: gchandra@umass.edu # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://github.com/d14znet # change to your GitHub homepage
+    - https://github.com/nyiell # change to your GitHub homepage
     - https://linkedin.com/in/gchandra7
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
@@ -150,7 +150,7 @@ pwa:
 paginate: 10
 
 # The base URL of your site
-baseurl: ""
+baseurl: "/tech-blog"
 
 # ------------ The following options are not recommended to be modified ------------------
 
