@@ -124,27 +124,27 @@ Traditional approaches try to replicate identity state across chains—expensive
 ```mermaid
 sequenceDiagram
     participant U as User
-    participant M1 as Metaverse 1<br/>(Ethereum)
-    participant TPL as Trust Propagation<br/>Layer
-    participant M2 as Metaverse 2<br/>(Polkadot)
+    participant M1 as Metaverse 1 (Ethereum)
+    participant TPL as Trust Propagation Layer
+    participant M2 as Metaverse 2 (Polkadot)
 
     U->>TPL: Generate DID
     Note over U,TPL: did:poly:user123
 
-    M1->>U: Issue VC<br/>(Verified Creator)
-    U->>TPL: Store VC locally<br/>Anchor commitment
+    M1->>U: Issue VC (Verified Creator)
+    U->>TPL: Store VC locally + Anchor commitment
     TPL->>M1: Merkle root posted
     TPL->>M2: Merkle root posted
 
-    U->>M2: Request access to<br/>creator-only space
+    U->>M2: Request access to creator-only space
     M2->>U: Prove you're verified
-    U->>U: Generate ZKP<br/>(I have VC proving creator status)
+    U->>U: Generate ZKP (I have VC proving creator status)
     U->>M2: Present ZKP
     M2->>TPL: Verify commitment exists
     TPL->>M2: ✓ Valid
     M2->>U: Access granted
 
-    Note over U,M2: No raw data crosses chains<br/>Privacy preserved
+    Note over U,M2: No raw data crosses chains - Privacy preserved
 ```
 
 **Why this matters:** Instead of expensive cross-chain messages for every interaction, we perform one-time anchoring and then local verification. Latency drops from seconds to milliseconds. Cost drops from dollars to cents. Privacy improves—verifiers see proofs, not raw data.
@@ -196,24 +196,24 @@ Identity standards evolve (W3C published VC 2.0 in May 2025). Traditional chains
 
 ```mermaid
 graph TB
-    subgraph Relay Chain
-        RC[Relay Chain<br/>Shared Security + Finality]
+    subgraph "Relay Chain"
+        RC["Relay Chain<br/>Shared Security + Finality"]
     end
 
-    subgraph Identity Parachain
-        IP[Identity Parachain<br/>DID Registry]
-        VC_REG[VC Schema Registry]
-        ZK_VER[ZKP Verifier Modules]
+    subgraph "Identity Parachain"
+        IP["Identity Parachain<br/>DID Registry"]
+        VC_REG["VC Schema Registry"]
+        ZK_VER["ZKP Verifier Modules"]
     end
 
-    subgraph Metaverse Parachains
-        M1[Metaverse 1<br/>Gaming]
-        M2[Metaverse 2<br/>Social]
-        M3[Metaverse 3<br/>Commerce]
+    subgraph "Metaverse Parachains"
+        M1["Metaverse 1<br/>Gaming"]
+        M2["Metaverse 2<br/>Social"]
+        M3["Metaverse 3<br/>Commerce"]
     end
 
-    subgraph DeFi Parachains
-        DEX[DEX Parachain<br/>Loan Smart Contracts]
+    subgraph "DeFi Parachains"
+        DEX["DEX Parachain<br/>Loan Smart Contracts"]
     end
 
     RC -.->|Shared Security| IP

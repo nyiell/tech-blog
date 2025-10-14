@@ -87,12 +87,12 @@ The hydration agent deserves special attention because it's the workhorse of the
 sequenceDiagram
     participant User
     participant OCM as OCM Control Plane
-    participant HA as Hydration Agent<br/>(Ephemeral Instance)
+    participant HA as Hydration Agent (Ephemeral Instance)
     participant AWS as AWS Account
     participant OCI as OCI Block Storage
 
     User->>OCM: Start Replication
-    OCM->>OCI: Create block volumes<br/>(matched to AWS sizes)
+    OCM->>OCI: Create block volumes (matched to AWS sizes)
     OCM->>OCM: Spin up Hydration Agent
     OCM->>HA: Attach prepared volumes
     OCM->>HA: Pass AWS credentials & task
@@ -109,10 +109,10 @@ sequenceDiagram
     end
 
     HA->>OCM: Replication complete
-    OCM->>OCM: Tag volume as "golden"<br/>(g_volume_identifier)
+    OCM->>OCM: Tag volume as "golden" (g_volume_identifier)
     OCM->>HA: Terminate hydration agent
 
-    Note over OCI: Golden volumes remain<br/>for future launches
+    Note over OCI: Golden volumes remain for future launches
 ```
 
 **Caption:** The hydration agent is ephemeral—it exists only during replication. It acts as a streaming proxy between AWS snapshots and OCI block volumes, with no intermediate object storage involved (unlike VMware migrations).
@@ -127,23 +127,21 @@ This is where things get interesting for large-scale migrations. OCI has a hard 
 graph LR
     subgraph "Ashburn Region"
         subgraph "AD-1"
-            MP1[Migration Project 1<br/>10 Assets] --> HA1[10 Hydration Agents]
+            MP1["Migration Project 1<br/>10 Assets"] --> HA1["10 Hydration Agents"]
         end
 
         subgraph "AD-2"
-            MP2[Migration Project 2<br/>10 Assets] --> HA2[10 Hydration Agents]
+            MP2["Migration Project 2<br/>10 Assets"] --> HA2["10 Hydration Agents"]
         end
 
         subgraph "AD-3"
-            MP3[Migration Project 3<br/>10 Assets] --> HA3[10 Hydration Agents]
+            MP3["Migration Project 3<br/>10 Assets"] --> HA3["10 Hydration Agents"]
         end
     end
 
     style HA1 fill:#ffcccc
     style HA2 fill:#ccffcc
     style HA3 fill:#ccccff
-
-    note1[30 parallel replications<br/>across 3 ADs] -.-> AD-3
 ```
 
 **Caption:** To parallelize beyond 10 replications, you must distribute assets across multiple Availability Domains or create multiple Migration Projects. In regions with only one AD (like Chicago), you're hard-capped at 10 concurrent replications.
