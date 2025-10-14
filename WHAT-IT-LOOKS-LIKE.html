@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Blog HTML Structure Preview</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .section {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+        }
+        code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .html-preview {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .structure-box {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .feature {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h1>📄 What Your Blog HTML Will Look Like</h1>
+        <p><strong>This shows you the actual HTML structure that Jekyll generates from your Markdown files.</strong></p>
+    </div>
+
+    <div class="section">
+        <h2>🏗️ Overall Page Structure</h2>
+        <div class="structure-box">
+            <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;!-- Meta tags for SEO --&gt;
+    &lt;meta name="description" content="Deep technical dives..."&gt;
+    &lt;meta property="og:title" content="Tech Insights"&gt;
+
+    &lt;!-- Theme colors (dark/light mode) --&gt;
+    &lt;meta name="theme-color" content="#f7f7f7"&gt; &lt;!-- Light mode --&gt;
+    &lt;meta name="theme-color" content="#1b1b1e"&gt; &lt;!-- Dark mode --&gt;
+
+    &lt;!-- CSS from CDN --&gt;
+    &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"&gt;
+    &lt;link rel="stylesheet" href="/blog/assets/css/jekyll-theme-chirpy.css"&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;!-- LEFT SIDEBAR --&gt;
+    &lt;aside id="sidebar"&gt;
+      &lt;!-- Profile section with avatar --&gt;
+      &lt;!-- Navigation menu --&gt;
+      &lt;!-- Social links --&gt;
+      &lt;!-- Dark/Light mode toggle --&gt;
+    &lt;/aside&gt;
+
+    &lt;!-- MAIN CONTENT AREA --&gt;
+    &lt;div id="main-wrapper"&gt;
+      &lt;!-- Top navigation bar --&gt;
+      &lt;!-- Blog posts list --&gt;
+      &lt;!-- Right sidebar (trending tags) --&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎨 Key Components of Your Blog</h2>
+
+        <h3>1. Left Sidebar (Navigation)</h3>
+        <div class="html-preview">
+            <pre>
+&lt;aside id="sidebar"&gt;
+  &lt;header class="profile-wrapper"&gt;
+    &lt;a href="/blog/"&gt;
+      &lt;img src="avatar.png" alt="avatar"&gt;
+    &lt;/a&gt;
+    &lt;h1 class="site-title"&gt;
+      &lt;a href="/blog/"&gt;Tech Insights&lt;/a&gt;
+    &lt;/h1&gt;
+    &lt;p class="site-subtitle"&gt;
+      Cloud Architecture & Web3 Innovation
+    &lt;/p&gt;
+  &lt;/header&gt;
+
+  &lt;nav&gt;
+    &lt;ul class="nav"&gt;
+      &lt;li&gt;&lt;a href="/blog/"&gt;HOME&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/blog/categories/"&gt;CATEGORIES&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/blog/tags/"&gt;TAGS&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/blog/archives/"&gt;ARCHIVES&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/blog/about/"&gt;ABOUT&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+
+  &lt;div class="sidebar-bottom"&gt;
+    &lt;button class="mode-toggle"&gt;🌙/☀️&lt;/button&gt;
+    &lt;a href="https://github.com/YOUR_USERNAME"&gt;GitHub&lt;/a&gt;
+    &lt;a href="https://linkedin.com/in/gchandra7"&gt;LinkedIn&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/aside&gt;
+            </pre>
+        </div>
+
+        <h3>2. Blog Post Card (Home Page)</h3>
+        <div class="html-preview">
+            <pre>
+&lt;article class="card-wrapper card"&gt;
+  &lt;a href="/blog/posts/oci-migrations-deep-dive/"&gt;
+    &lt;div class="card-body"&gt;
+      &lt;h1 class="card-title"&gt;
+        My Unexpected Experience with OCI Migrations
+      &lt;/h1&gt;
+
+      &lt;div class="card-text content"&gt;
+        &lt;p&gt;
+          What I learned orchestrating large-scale AWS-to-OCI
+          migrations while navigating tag validation conflicts...
+        &lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="post-meta"&gt;
+        &lt;i class="far fa-calendar"&gt;&lt;/i&gt;
+        &lt;time&gt;Oct 13, 2025&lt;/time&gt;
+
+        &lt;i class="far fa-folder-open"&gt;&lt;/i&gt;
+        &lt;span&gt;Cloud Architecture, Migration&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/a&gt;
+&lt;/article&gt;
+            </pre>
+        </div>
+
+        <h3>3. Individual Blog Post Page</h3>
+        <div class="html-preview">
+            <pre>
+&lt;main&gt;
+  &lt;article class="post"&gt;
+    &lt;header&gt;
+      &lt;h1&gt;My Unexpected Experience with OCI Migrations&lt;/h1&gt;
+
+      &lt;div class="post-meta"&gt;
+        &lt;span&gt;📅 Oct 13, 2025&lt;/span&gt;
+        &lt;span&gt;⏱️ 18 min read&lt;/span&gt;
+        &lt;span&gt;By Gaurav Chandra&lt;/span&gt;
+      &lt;/div&gt;
+
+      &lt;div class="post-tags"&gt;
+        &lt;a href="/blog/tags/oci/"&gt;#oci&lt;/a&gt;
+        &lt;a href="/blog/tags/aws/"&gt;#aws&lt;/a&gt;
+        &lt;a href="/blog/tags/cloud-migration/"&gt;#cloud-migration&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Table of Contents (auto-generated from headings) --&gt;
+    &lt;nav class="toc"&gt;
+      &lt;h2&gt;Contents&lt;/h2&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#introduction"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#understanding-ocm"&gt;Understanding OCM&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#tag-validation"&gt;Tag Validation Crisis&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+
+    &lt;!-- Your Markdown content converted to HTML --&gt;
+    &lt;div class="post-content"&gt;
+      &lt;p&gt;When I started this AWS-to-OCI migration project...&lt;/p&gt;
+
+      &lt;h2 id="understanding-ocm"&gt;Understanding the OCM Service&lt;/h2&gt;
+      &lt;p&gt;The Oracle Cloud Migrations UI presents...&lt;/p&gt;
+
+      &lt;!-- Code blocks with syntax highlighting --&gt;
+      &lt;div class="highlight"&gt;
+        &lt;pre&gt;&lt;code class="language-bash"&gt;oci iam tag-default create \
+  --compartment-id &lt;migration_compartment_id&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Mermaid diagrams rendered as SVG --&gt;
+      &lt;div class="mermaid"&gt;
+        graph TB
+          AS[Asset Source] --&gt; INV[Inventory]
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+            </pre>
+        </div>
+
+        <h3>4. Right Sidebar (Trending Section)</h3>
+        <div class="html-preview">
+            <pre>
+&lt;aside id="panel-wrapper"&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Recently Updated&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="/blog/posts/oci-migrations/"&gt;OCI Migrations&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/blog/posts/metaverse/"&gt;Metaverse Identity&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/section&gt;
+
+  &lt;section&gt;
+    &lt;h2&gt;Trending Tags&lt;/h2&gt;
+    &lt;div class="tags"&gt;
+      &lt;a class="post-tag btn" href="/blog/tags/oci/"&gt;oci&lt;/a&gt;
+      &lt;a class="post-tag btn" href="/blog/tags/aws/"&gt;aws&lt;/a&gt;
+      &lt;a class="post-tag btn" href="/blog/tags/metaverse/"&gt;metaverse&lt;/a&gt;
+      &lt;a class="post-tag btn" href="/blog/tags/web3/"&gt;web3&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/aside&gt;
+            </pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>✨ Features Automatically Generated</h2>
+        <div class="feature-list">
+            <div class="feature">
+                <strong>📱 Responsive Design</strong><br>
+                Works on desktop, tablet, mobile
+            </div>
+            <div class="feature">
+                <strong>🌙 Dark/Light Mode</strong><br>
+                Auto-detects system preference
+            </div>
+            <div class="feature">
+                <strong>🔍 Search Function</strong><br>
+                Instant client-side search
+            </div>
+            <div class="feature">
+                <strong>📊 Syntax Highlighting</strong><br>
+                Code blocks with colors
+            </div>
+            <div class="feature">
+                <strong>🏷️ Tag System</strong><br>
+                Auto-generated tag pages
+            </div>
+            <div class="feature">
+                <strong>📂 Categories</strong><br>
+                Organized content structure
+            </div>
+            <div class="feature">
+                <strong>📖 Table of Contents</strong><br>
+                Auto-generated from headings
+            </div>
+            <div class="feature">
+                <strong>⏱️ Reading Time</strong><br>
+                Calculated automatically
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎨 CSS Classes Used (From Chirpy Theme)</h2>
+        <div class="html-preview">
+            <pre>
+/* Layout */
+.sidebar              → Left navigation panel
+.main-wrapper         → Center content area
+.panel-wrapper        → Right sidebar
+
+/* Components */
+.card-wrapper         → Blog post preview card
+.post-content         → Individual post content
+.highlight            → Code block container
+.mermaid              → Diagram container
+
+/* Typography */
+.card-title           → Post title in card
+.site-title           → Blog name in sidebar
+.post-meta            → Date, author, reading time
+
+/* Interactive */
+.mode-toggle          → Dark/light switch button
+.post-tag             → Clickable tag badge
+.nav-link             → Navigation menu item
+            </pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📦 External Resources Loaded</h2>
+        <div class="note">
+            <strong>These are loaded from CDNs (Content Delivery Networks) for fast performance:</strong>
+        </div>
+        <ul>
+            <li><strong>Bootstrap 5.3.2</strong> - Responsive grid system</li>
+            <li><strong>Font Awesome 6.5.1</strong> - Icons (📅, 🔍, etc.)</li>
+            <li><strong>jQuery 3.7.1</strong> - JavaScript utilities</li>
+            <li><strong>Day.js</strong> - Date formatting</li>
+            <li><strong>Source Sans Pro & Lato</strong> - Google Fonts</li>
+            <li><strong>Chirpy CSS</strong> - Theme-specific styling (~50KB)</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>📏 Page Performance</h2>
+        <div class="structure-box">
+            <p><strong>Home Page Load:</strong></p>
+            <ul>
+                <li>HTML: ~15KB</li>
+                <li>CSS (Chirpy theme): ~50KB</li>
+                <li>JavaScript: ~30KB (combined from CDN)</li>
+                <li>Total: ~95KB (excluding images)</li>
+                <li><strong>Load time: &lt;1 second</strong> (with CDN)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🔗 URL Structure</h2>
+        <div class="html-preview">
+            <pre>
+Home Page:
+https://your-username.github.io/blog/
+  → Generates: _site/index.html
+
+Blog Post:
+https://your-username.github.io/blog/posts/oci-migrations-deep-dive/
+  → Generates: _site/posts/oci-migrations-deep-dive/index.html
+
+Tags Page:
+https://your-username.github.io/blog/tags/
+  → Generates: _site/tags/index.html
+
+Specific Tag:
+https://your-username.github.io/blog/tags/oci/
+  → Generates: _site/tags/oci/index.html
+
+Categories:
+https://your-username.github.io/blog/categories/cloud-architecture/
+  → Generates: _site/categories/cloud-architecture/index.html
+            </pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎯 Summary</h2>
+        <div class="note">
+            <p><strong>What Jekyll Does:</strong></p>
+            <ul>
+                <li>Reads your <code>_posts/*.md</code> files</li>
+                <li>Converts Markdown → HTML</li>
+                <li>Applies Chirpy theme CSS/JS</li>
+                <li>Generates sidebar navigation</li>
+                <li>Creates tag & category pages</li>
+                <li>Builds table of contents</li>
+                <li>Adds syntax highlighting to code</li>
+                <li>Calculates reading time</li>
+                <li>Outputs everything to <code>_site/</code> folder</li>
+            </ul>
+
+            <p style="margin-top: 20px;"><strong>Result:</strong> A fast, beautiful, responsive blog with dark mode, search, and all modern features!</p>
+        </div>
+    </div>
+
+    <div class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 40px;">
+        <h2 style="color: white; border: none;">🚀 Ready to Deploy?</h2>
+        <p style="font-size: 1.2em; margin: 20px 0;">
+            Just push to GitHub and this entire HTML structure will be generated automatically!
+        </p>
+        <p style="font-size: 0.9em; opacity: 0.9;">
+            Time: 2-3 minutes | Cost: FREE | Maintenance: Just push markdown files
+        </p>
+    </div>
+</body>
+</html>
