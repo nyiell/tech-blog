@@ -33,7 +33,7 @@ The Oracle Cloud Migrations UI presents a deceptively simple hierarchy: you crea
 
 Here's what I learned through extensive API analysis and coordination with Oracle's engineering team:
 
-<img src="/assets/img/diagrams/oci-architecture.svg" alt="OCM Service Architecture" class="no-lightbox" width="9900" height="900" style="display: block; margin: 30px auto;">
+<img src="/assets/img/diagrams/oci-architecture.svg" alt="OCM Service Architecture" class="no-lightbox" width="1200" height="900" style="display: block; margin: 30px auto;">
 
 **Caption:** The OCM service separates concerns between replication (moving data) and launching (creating compute). This distinction is crucial for understanding parallelization limits and troubleshooting failures.
 
