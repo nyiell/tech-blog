@@ -24,7 +24,7 @@ This article dissects why metaverse interoperability demands a paradigm shift in
 
 Most discussions of blockchain interoperability focus on Vitalik Buterin's "blockchain trilemma" (security, scalability, decentralization). But cross-chain systems face a distinct, underappreciated constraint I call the **Interoperability Trilemma:**
 
-<img src="/assets/img/diagrams/metaverse-trilemma.svg" alt="Interoperability Trilemma" class="no-lightbox" style="width: 100%; max-width: 800px; display: block; margin: 20px auto;">
+<img src="/assets/img/diagrams/metaverse-trilemma.svg" alt="Interoperability Trilemma" class="no-lightbox" style="width: 100%; max-width: 1200px; display: block; margin: 20px auto;">
 
 **The Trilemma Explained:**
 
@@ -57,7 +57,7 @@ This isn't just inconvenient—it fundamentally undermines the value proposition
 
 Rather than treating identity as an application built atop interoperability infrastructure, we should **invert the stack**: make identity the foundational layer upon which cross-chain operations are built.
 
-<img src="/assets/img/diagrams/metaverse-architecture.svg" alt="Identity-First Architecture" class="no-lightbox" style="width: 100%; max-width: 800px; display: block; margin: 20px auto;">
+<img src="/assets/img/diagrams/metaverse-architecture.svg" alt="Identity-First Architecture" class="no-lightbox" style="width: 100%; max-width: 1200px; display: block; margin: 20px auto;">
 
 The **Trust Propagation Layer (TPL)** serves as a universal identity substrate with three core primitives:
 
@@ -78,7 +78,7 @@ Traditional approaches try to replicate identity state across chains—expensive
 3. **Update infrequently** only when reputation materially changes
 4. **Resolve disputes** through challenge-response mechanisms
 
-<img src="/assets/img/diagrams/metaverse-sequence.svg" alt="Trust Propagation Layer Sequence" class="no-lightbox" style="width: 100%; max-width: 900px; display: block; margin: 20px auto;">
+<img src="/assets/img/diagrams/metaverse-sequence.svg" alt="Trust Propagation Layer Sequence" class="no-lightbox" style="width: 100%; max-width: 1200px; display: block; margin: 20px auto;">
 
 **Why this matters:** Instead of expensive cross-chain messages for every interaction, we perform one-time anchoring and then local verification. Latency drops from seconds to milliseconds. Cost drops from dollars to cents. Privacy improves—verifiers see proofs, not raw data.
 
@@ -127,7 +127,7 @@ Identity standards evolve (W3C published VC 2.0 in May 2025). Traditional chains
 
 ### The Polkadot Architecture for Cross-Metaverse Identity
 
-<img src="/assets/img/diagrams/metaverse-polkadot.svg" alt="Polkadot Architecture for Cross-Metaverse Identity" class="no-lightbox" style="width: 100%; max-width: 900px; display: block; margin: 20px auto;">
+<img src="/assets/img/diagrams/metaverse-polkadot.svg" alt="Polkadot Architecture for Cross-Metaverse Identity" class="no-lightbox" style="width: 100%; max-width: 1200px; display: block; margin: 20px auto;">
 
 **Key Insight:** The Identity Parachain doesn't store raw credentials—it stores:
 
