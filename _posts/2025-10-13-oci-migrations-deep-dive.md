@@ -33,7 +33,7 @@ The Oracle Cloud Migrations UI presents a deceptively simple hierarchy: you crea
 
 Here's what I learned through extensive API analysis and coordination with Oracle's engineering team:
 
-<img src="/assets/img/diagrams/oci-architecture.svg" alt="OCM Service Architecture" class="no-lightbox" style="width: 100%; max-width: 2000px; display: block; margin: 30px auto;">
+<img src="/assets/img/diagrams/oci-architecture.svg" alt="OCM Service Architecture" class="no-lightbox" style="width: 100%; display: block; margin: 30px auto;">
 
 **Caption:** The OCM service separates concerns between replication (moving data) and launching (creating compute). This distinction is crucial for understanding parallelization limits and troubleshooting failures.
 
@@ -56,7 +56,7 @@ But it also introduces complexity that the UI obscures. For example, you can't "
 
 The hydration agent deserves special attention because it's the workhorse of the entire system. Here's how it actually works:
 
-<img src="/assets/img/diagrams/oci-hydration.svg" alt="Hydration Agent Sequence" class="no-lightbox" style="width: 100%; max-width: 2000px; display: block; margin: 30px auto;">
+<img src="/assets/img/diagrams/oci-hydration.svg" alt="Hydration Agent Sequence" class="no-lightbox" style="width: 100%; display: block; margin: 30px auto;">
 
 **Caption:** The hydration agent is ephemeral—it exists only during replication. It acts as a streaming proxy between AWS snapshots and OCI block volumes, with no intermediate object storage involved (unlike VMware migrations).
 
@@ -66,7 +66,7 @@ The hydration agent deserves special attention because it's the workhorse of the
 
 This is where things get interesting for large-scale migrations. OCI has a hard limit: **10 concurrent hydration agents per Availability Domain per tenancy**.
 
-<img src="/assets/img/diagrams/oci-availability.svg" alt="Availability Domain Distribution" class="no-lightbox" style="width: 100%; max-width: 2000px; display: block; margin: 30px auto;">
+<img src="/assets/img/diagrams/oci-availability.svg" alt="Availability Domain Distribution" class="no-lightbox" style="width: 100%; display: block; margin: 30px auto;">
 
 **Caption:** To parallelize beyond 10 replications, you must distribute assets across multiple Availability Domains or create multiple Migration Projects. In regions with only one AD (like Chicago), you're hard-capped at 10 concurrent replications.
 
@@ -95,7 +95,7 @@ The error was cryptic. The migration worked fine in our `ocideltekengineering` t
 
 OCI's tagging system implements a hierarchical governance model that validates tags at multiple levels:
 
-<img src="/assets/img/diagrams/oci-tags.svg" alt="Tag Validation Flow" class="no-lightbox" style="width: 100%; max-width: 2000px; display: block; margin: 30px auto;">
+<img src="/assets/img/diagrams/oci-tags.svg" alt="Tag Validation Flow" class="no-lightbox" style="width: 100%; display: block; margin: 30px auto;">
 
 **Caption:** Tag validation in OCI checks parent compartment rules during resource creation. User-applied tags can conflict with parent tag defaults, causing validation failures that aren't obvious from the UI.
 
