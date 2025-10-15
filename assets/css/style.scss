@@ -1,0 +1,19 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* Custom styles to make diagrams display at full size */
+article img.no-lightbox {
+  max-width: none !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* Override any post content img constraints */
+.post-content img.no-lightbox,
+#post-wrapper img.no-lightbox,
+main img.no-lightbox {
+  max-width: none !important;
+  width: auto !important;
+}
