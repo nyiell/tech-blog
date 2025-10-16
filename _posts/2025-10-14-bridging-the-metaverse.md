@@ -304,9 +304,4 @@ The metaverse won't be one thing—it will be a fabric of interconnected worlds,
 
 ---
 
-**About the Author:**
-Gaurav Chandra is a systems architect specializing in cross-chain infrastructure and decentralized identity. He explores the intersection of cryptography, governance, and user sovereignty in Web3 systems. Contact: gchandra@umass.edu | [linkedin.com/in/gchandra7](https://linkedin.com/in/gchandra7)
-
----
-
 *This blog represents independent research and analysis, synthesizing emerging patterns in metaverse identity and cross-chain architecture as of 2025.*
