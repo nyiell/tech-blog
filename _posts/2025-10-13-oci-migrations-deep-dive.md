@@ -89,7 +89,7 @@ Error returned by CreateAsset operation in Inventory service.
 (400, InvalidParameter, false) Invalid tags
 ```
 
-The error was cryptic. The migration worked fine in our `ocideltekengineering` tenant, but failed consistently in another tenant with identical-looking configurations. After extensive coordination with Oracle support (SR 4-0001062947), we uncovered something fundamental about how OCI's tag validation actually works.
+The error was cryptic. The migration worked fine in our `ociengineering` tenant, but failed consistently in another tenant with identical-looking configurations. After extensive coordination with Oracle support (SR 4-0001062947), we uncovered something fundamental about how OCI's tag validation actually works.
 
 ### How OCI Tag Validation Really Works
 
