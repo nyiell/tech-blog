@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="100" fill="#1a1a2e"/>
+
+  <!-- Astronaut body (suit) -->
+  <rect x="70" y="120" width="60" height="50" rx="8" fill="#e8e8e8"/>
+
+  <!-- Arms -->
+  <rect x="55" y="125" width="15" height="35" rx="7" fill="#e8e8e8"/>
+  <rect x="130" y="125" width="15" height="35" rx="7" fill="#e8e8e8"/>
+
+  <!-- Helmet -->
+  <circle cx="100" cy="85" r="35" fill="#f5f5f5" stroke="#c0c0c0" stroke-width="2"/>
+
+  <!-- Visor (glass) -->
+  <ellipse cx="100" cy="85" rx="25" ry="20" fill="#4a90e2" opacity="0.6"/>
+  <ellipse cx="100" cy="82" rx="20" ry="15" fill="#6bb5ff" opacity="0.4"/>
+
+  <!-- Visor reflection -->
+  <ellipse cx="90" cy="78" rx="8" ry="6" fill="white" opacity="0.8"/>
+
+  <!-- Helmet ring/collar -->
+  <ellipse cx="100" cy="115" rx="38" ry="8" fill="#c0c0c0"/>
+  <ellipse cx="100" cy="115" rx="35" ry="6" fill="#d0d0d0"/>
+
+  <!-- Chest control panel -->
+  <rect x="85" y="130" width="30" height="20" rx="3" fill="#2c3e50"/>
+  <rect x="88" y="133" width="5" height="5" rx="1" fill="#e74c3c"/>
+  <rect x="95" y="133" width="5" height="5" rx="1" fill="#2ecc71"/>
+  <rect x="102" y="133" width="5" height="5" rx="1" fill="#f39c12"/>
+  <line x1="88" y1="142" x2="107" y2="142" stroke="#3498db" stroke-width="1.5"/>
+  <line x1="88" y1="145" x2="110" y2="145" stroke="#3498db" stroke-width="1.5"/>
+
+  <!-- Stars in background -->
+  <circle cx="25" cy="30" r="2" fill="white" opacity="0.8"/>
+  <circle cx="170" cy="45" r="1.5" fill="white" opacity="0.6"/>
+  <circle cx="180" cy="120" r="2" fill="white" opacity="0.9"/>
+  <circle cx="30" cy="160" r="1" fill="white" opacity="0.7"/>
+  <circle cx="160" cy="170" r="1.5" fill="white" opacity="0.8"/>
+  <circle cx="45" cy="85" r="1" fill="white" opacity="0.5"/>
+  <circle cx="155" cy="80" r="1.5" fill="white" opacity="0.7"/>
+</svg>
