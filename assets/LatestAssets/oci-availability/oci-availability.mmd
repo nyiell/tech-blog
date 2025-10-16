@@ -1,0 +1,25 @@
+%%{init: {
+  "theme": "dark",
+  "themeVariables": {
+    "background": "#1a102a",
+    "primaryTextColor": "#d0d3d8",
+    "lineColor": "#c99cff"
+  },
+  "themeCSS": "text, tspan { fill: #d0d3d8 !important; }"
+}}%%
+graph LR
+    subgraph "Ashburn Region"
+        subgraph "AD-1"
+            MP1["Migration Project 1<br/>10 Assets"] --> HA1["10 Hydration Agents"]
+        end
+        subgraph "AD-2"
+            MP2["Migration Project 2<br/>10 Assets"] --> HA2["10 Hydration Agents"]
+        end
+        subgraph "AD-3"
+            MP3["Migration Project 3<br/>10 Assets"] --> HA3["10 Hydration Agents"]
+        end
+    end
+
+    style HA1 fill:#5e35b1,color:#d0d3d8
+    style HA2 fill:#7b1fa2,color:#d0d3d8
+    style HA3 fill:#8e24aa,color:#d0d3d8

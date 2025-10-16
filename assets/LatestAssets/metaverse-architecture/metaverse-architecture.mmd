@@ -1,0 +1,39 @@
+%%{init: {
+  "theme": "dark",
+  "themeVariables": {
+    "background": "#1a102a",
+    "primaryColor": "#24143a",
+    "secondaryColor": "#2a1842",
+    "tertiaryColor": "#321e55",
+    "primaryBorderColor": "#d6b4fe",
+    "lineColor": "#c99cff",
+    "primaryTextColor": "#d0d3d8",
+    "clusterBkg": "#221334",
+    "clusterBorder": "#d6b4fe",
+    "edgeLabelBackground": "#1a102a",
+    "fontFamily": "Inter,Arial,Helvetica,sans-serif",
+    "fontSize": "16px"
+  },
+  "themeCSS": ".node text, .edgeLabel, .label, text, tspan { fill: #d0d3d8 !important; } .cluster rect { fill: #221334 !important; stroke: #d6b4fe !important; } .edgeLabel rect { fill: #1a102a !important; }"
+}}%%
+graph TB
+    subgraph "Traditional Architecture"
+        T1[Application Layer<br/>Metaverse Platforms]
+        T2[Identity Layer<br/>Per-chain Wallets]
+        T3[Interoperability Layer<br/>Bridges & Oracles]
+        T4[Blockchain Layer<br/>Individual Chains]
+        T1 --> T2
+        T2 --> T3
+        T3 --> T4
+    end
+
+    subgraph "Identity-First Architecture"
+        N1[Application Layer<br/>Metaverse Platforms]
+        N2[Trust Propagation Layer<br/>Cross-chain Identity & Reputation]
+        N3[Consensus Layer<br/>Individual Chains]
+        N1 --> N2
+        N2 --> N3
+    end
+
+    style T2 fill:#6a1b9a,color:#d0d3d8
+    style N2 fill:#8e24aa,color:#d0d3d8

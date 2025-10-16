@@ -1,0 +1,30 @@
+%%{init: {
+  "theme": "dark",
+  "themeVariables": {
+    "background": "#1a102a",
+    "primaryTextColor": "#d0d3d8",
+    "lineColor": "#c99cff"
+  },
+  "themeCSS": "text, tspan { fill: #d0d3d8 !important; }"
+}}%%
+graph TB
+    subgraph "OCM Service Architecture"
+        AS[Asset Source<br/>AWS Connection] --> INV[Central Inventory<br/>Discovery Results]
+        INV --> MP[Migration Project<br/>Logical Container]
+        MP --> MA[Migration Assets<br/>VMs to Migrate]
+        MP --> PLAN[Migration Plans<br/>Launch Configuration]
+        MA --> REP[Replication Process]
+        REP --> HA[Hydration Agent<br/>Worker Instance]
+        HA --> GV[Golden Volumes<br/>Replicated Data]
+        PLAN --> CLONE[Volume Cloning]
+        GV --> CLONE
+        CLONE --> PATCH[Linux Patching<br/>GRUB/Network]
+        PATCH --> TF[Terraform Stack<br/>Generated Artifacts]
+        TF --> DEPLOY[Apply Stack]
+        DEPLOY --> FINAL[Running OCI Instances]
+    end
+
+    style MA fill:#5e35b1,color:#d0d3d8
+    style GV fill:#7b1fa2,color:#d0d3d8
+    style HA fill:#8e24aa,color:#d0d3d8
+    style TF fill:#ab47bc,color:#d0d3d8

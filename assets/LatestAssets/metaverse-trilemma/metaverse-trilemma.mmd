@@ -1,0 +1,27 @@
+%%{init: {
+  "theme": "dark",
+  "themeVariables": {
+    "background": "#1a102a",
+    "primaryTextColor": "#d0d3d8",
+    "lineColor": "#c99cff"
+  },
+  "themeCSS": "text, tspan { fill: #d0d3d8 !important; }"
+}}%%
+graph TD
+    A[Interoperability Trilemma]
+    A --> B[Trust Minimization]
+    A --> C[Universal Compatibility]
+    A --> D[Performance]
+
+    B --> E[Light Client Proofs<br/>Zero trusted parties]
+    C --> F[Works across all chains<br/>Protocol-agnostic]
+    D --> G[Low latency<br/>High throughput]
+
+    B -.->|Conflicts with| C
+    C -.->|Conflicts with| D
+    D -.->|Conflicts with| B
+
+    style A fill:#8e24aa,color:#d0d3d8
+    style B fill:#5e35b1,color:#d0d3d8
+    style C fill:#7e57c2,color:#d0d3d8
+    style D fill:#9575cd,color:#d0d3d8

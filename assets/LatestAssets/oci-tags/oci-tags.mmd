@@ -1,0 +1,25 @@
+%%{init: {
+  "theme": "dark",
+  "themeVariables": {
+    "background": "#1a102a",
+    "primaryTextColor": "#d0d3d8",
+    "lineColor": "#c99cff"
+  },
+  "themeCSS": "text, tspan { fill: #d0d3d8 !important; }"
+}}%%
+graph TD
+    ROOT[Root Compartment<br/>Tag Namespace: Finance] --> PARENT[Parent Compartment<br/>Tag Defaults: CostCenter=Required]
+    PARENT --> CHILD1[Child 1<br/>Tag: CostCenter=Defined]
+    PARENT --> CHILD2[Child 2<br/>Tag: CostCenter=Default]
+
+    CHILD1 --> RES1[Resource Creation]
+    CHILD2 --> RES2[Resource Creation]
+    RES1 -->|Validation| CHECK1{Reconcile user value?}
+    RES2 -->|Validation| CHECK2{Apply default value?}
+    CHECK1 -->|No| FAIL1[❌ 400 Invalid Tags]
+    CHECK1 -->|Yes| SUCCESS1[✅ Created]
+    CHECK2 -->|Yes| SUCCESS2[✅ Created]
+
+    style FAIL1 fill:#5e35b1,color:#d0d3d8
+    style SUCCESS1 fill:#7b1fa2,color:#d0d3d8
+    style SUCCESS2 fill:#8e24aa,color:#d0d3d8

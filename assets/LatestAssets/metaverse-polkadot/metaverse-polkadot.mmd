@@ -1,0 +1,59 @@
+%%{init: {
+  "theme": "dark",
+  "themeVariables": {
+    "background": "#1a102a",
+    "primaryColor": "#24143a",
+    "secondaryColor": "#2a1842",
+    "tertiaryColor": "#321e55",
+    "primaryBorderColor": "#d6b4fe",
+    "lineColor": "#c99cff",
+    "primaryTextColor": "#d0d3d8",
+    "clusterBkg": "#221334",
+    "clusterBorder": "#d6b4fe",
+    "edgeLabelBackground": "#1a102a",
+    "fontFamily": "Inter,Arial,Helvetica,sans-serif"
+  },
+  "themeCSS": ".node text, .edgeLabel, .label, text, tspan { fill: #d0d3d8 !important; }"
+}}%%
+graph TB
+    subgraph "Relay Chain"
+        RC["Relay Chain<br/>Shared Security + Finality"]
+    end
+
+    subgraph "Identity Parachain"
+        IP["Identity Parachain<br/>DID Registry"]
+        VC_REG["VC Schema Registry"]
+        ZK_VER["ZKP Verifier Modules"]
+    end
+
+    subgraph "Metaverse Parachains"
+        M1["Metaverse 1<br/>Gaming"]
+        M2["Metaverse 2<br/>Social"]
+        M3["Metaverse 3<br/>Commerce"]
+    end
+
+    subgraph "DeFi Parachains"
+        DEX["DEX Parachain<br/>Loan Smart Contracts"]
+    end
+
+    RC -.->|Shared Security| IP
+    RC -.->|Shared Security| M1
+    RC -.->|Shared Security| M2
+    RC -.->|Shared Security| M3
+    RC -.->|Shared Security| DEX
+
+    IP <-->|XCM: Verify Credential| M1
+    IP <-->|XCM: Verify Credential| M2
+    IP <-->|XCM: Verify Credential| M3
+    IP <-->|XCM: Verify Credential| DEX
+
+    M1 <-->|XCM: Asset Transfer| M2
+    M2 <-->|XCM: Asset Transfer| M3
+    M1 <-->|XCM: Prove Collateral| DEX
+
+    style RC fill:#7b1fa2,color:#d0d3d8
+    style IP fill:#8e24aa,color:#d0d3d8
+    style M1 fill:#5e35b1,color:#d0d3d8
+    style M2 fill:#5e35b1,color:#d0d3d8
+    style M3 fill:#5e35b1,color:#d0d3d8
+    style DEX fill:#ab47bc,color:#d0d3d8

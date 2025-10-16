@@ -1,0 +1,35 @@
+%%{init: {
+  "theme": "dark",
+  "themeVariables": {
+    "background": "#1a102a",
+    "primaryTextColor": "#d0d3d8",
+    "lineColor": "#c99cff"
+  },
+  "themeCSS": "text, tspan { fill: #d0d3d8 !important; }"
+}}%%
+sequenceDiagram
+    participant User
+    participant OCM as OCM Control Plane
+    participant HA as Hydration Agent
+    participant AWS as AWS Account
+    participant OCI as OCI Block Storage
+
+    User->>OCM: Start Replication
+    OCM->>OCI: Create block volumes
+    OCM->>OCM: Spin up Hydration Agent
+    OCM->>HA: Attach volumes + credentials
+    HA->>AWS: CreateSnapshot(EC2 Volume)
+    AWS-->>HA: Snapshot ID
+    HA->>AWS: Poll until ready
+    AWS-->>HA: Snapshot ready
+
+    loop For each block
+        HA->>AWS: GetSnapshotBlocks(range)
+        AWS-->>HA: Block data
+        HA->>OCI: Write blocks
+    end
+
+    HA->>OCM: Replication complete
+    OCM->>OCM: Tag volume as "golden"
+    OCM->>HA: Terminate agent
+    Note over OCI: Golden volumes retained for launches

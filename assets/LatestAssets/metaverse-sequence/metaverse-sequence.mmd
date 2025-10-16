@@ -1,0 +1,29 @@
+%%{init: {
+  "theme": "dark",
+  "themeVariables": {
+    "background": "#1a102a",
+    "primaryTextColor": "#d0d3d8",
+    "lineColor": "#c99cff"
+  },
+  "themeCSS": "text, tspan { fill: #d0d3d8 !important; }"
+}}%%
+sequenceDiagram
+    participant U as User
+    participant M1 as Metaverse 1 (Ethereum)
+    participant TPL as Trust Propagation Layer
+    participant M2 as Metaverse 2 (Polkadot)
+
+    U->>TPL: Generate DID (did:poly:user123)
+    M1->>U: Issue VC (Verified Creator)
+    U->>TPL: Store VC + Anchor commitment
+    TPL->>M1: Post Merkle root
+    TPL->>M2: Post Merkle root
+
+    U->>M2: Request access to creator-only area
+    M2->>U: Challenge — Prove you're verified
+    U->>U: Generate ZKP proof
+    U->>M2: Present ZKP
+    M2->>TPL: Verify commitment
+    TPL-->>M2: ✅ Valid
+    M2-->>U: Access granted
+    Note over U,M2: No raw data crosses chains — privacy preserved
